@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block body%}
+<h1 class="text-center " > Please Recognize Yourself </h1>
+<form class="form-signin" action="{{ url_for('chatroomlist')}}" method="post">
+        <div class="form-group mt-3">
+            <big><label for="user_name" class="mb-1"> Please enter your display name. </label></big>
+            <input type="text" id="user_name" class="form-control p-4" placeholder="Display Name" required name="user_name">
+            <button type="submit" class="mt-1 btn btn-lg btn-primary"> Submit </button>
+        </div>
+    </form>
+{% endblock %}

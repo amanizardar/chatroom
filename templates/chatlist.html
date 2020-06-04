@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block anchor %}
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('chatroomlist') }}">
+                ChatroomList
+            </a>
+        </li>
+    </ul>
+        <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link " href='{{ url_for('logout') }}'>
+                Logout <strong>{{ user_name }}</strong>
+            </a>
+        </li>
+    </ul>
+{% endblock %}
+
+
+
+{% block body %}
+    {% if chatlist %}
+        <h2> Chatlist:</h2>
+        <ul id="chatrooms">
+            {% for chat in chatlist %}
+                <li>
+                    <a href="{{ url_for('chatroom', chat_id=loop.index)}}"> {{ chat }} </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h3>Didn't find the chatroom you're looking for?</h3>
+    <form class="form-signin" action="{{ url_for('chatroom', chat_id=chatlist | length +1)}}" method="post">
+        <div class="form-group mt-3">
+            <big><label for="chatroom_name" class="mb-1"> Please enter chatoom's name you want to create. </label></big>
+            <input type="text" id="chatroom_name" class="form-control p-4" placeholder="Chat Room Name" required name="chatroom_name">
+            <button type="submit" class="mt-1 btn btn-lg btn-primary"> Submit </button>
+        </div>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" integrity="sha256-ji09tECORKvr8xB9iCl8DJ8iNMLriDchC1+p+yt1hSs=" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='chatlist.js') }}"></script>
+{% endblock %}
