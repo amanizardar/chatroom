@@ -10,3 +10,7 @@ It uses local memory to stores the data.
 It is a real time messaging service like flack.  
 It uses HTML and CSS for front-end and Python & flask at the back-
 end.  
+
+To run use this command :
+
+    flask run application.py
